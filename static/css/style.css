@@ -8,3 +8,35 @@ body,
 html {
   height: 100%;
 }
+
+/* legend for earthquake map */
+ .legend {
+  padding: 5px;
+  font-family: Sanchez, serif;
+  font-size: 14px;
+  /* font-weight: bold; */
+  line-height: 18px;
+  color: rgb(214, 246, 52);
+  background-color:  rgb(2, 2, 2 ); 
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+} 
+
+.legend .d1 {
+  color: rgb(254, 249, 231);
+}
+.legend .d2 {
+  color: rgb(252, 243, 207);
+}
+.legend .d3 {
+  color: rgb(247, 220, 111);
+}
+.legend .d4 {
+  color: rgb(241, 196, 15);
+}
+.legend .d5 {
+  color: rgb(183, 149, 11);
+}
+.legend .d6 {
+  color: rgb(125, 102, 8);
+}

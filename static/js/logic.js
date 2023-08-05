@@ -1,5 +1,4 @@
-// Store our API endpoint as url.
-let url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson"
+
 
 //get colors for markers based on depth
 function colorShade(data) {
@@ -70,18 +69,49 @@ function createMap(mapData) {
         
       })
       .addTo(myMap);
+
+      eqLegend(myMap);
     
 };
 
 // main body, uses API to get data and passes to createMap function
+
+// Store our API endpoint as url.
+let url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson"
+
 d3.json(url).then(function (data) {
   let eqFeatures = data.features;
   console.log(eqFeatures);
 
   createMap(eqFeatures)
+  
   }
 );
 
+// Create a legend to display information about eq depth
+function eqLegend(myMap) {
+  var info = L.control({
+  position: "bottomright"
+});
+// When the layer control is added, insert a div with the class of "legend"
+  info.onAdd = function() {
+      var div = L.DomUtil.create("div", "legend");
+      div.innerHTML=[
+          "<h8>Depth(km):</h8></br>",
+          "<span class='d1'>< 10</span>",
+          "</br>",
+          "<span class='d2'>10-30</span></br>",
+          "<span class='d3'>30-50</span></br>",
+          "<span class='d4'>50-70</span></br>",
+          "<span class='d5'>70-90</span></br>",
+          "<span class='d6'>>90</span>"
+          ].join("");
+
+    return div;
+};
+// Add the info legend to the map
+info.addTo(myMap);
+};
 
 
 
