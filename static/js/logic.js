@@ -47,6 +47,31 @@ function onEachFeature(feature, layer) {
     return L.circleMarker(latlng, geojsonMarkerOptions);
   };
 
+  // Create a legend to display information about eq depth
+function eqLegend(myMap) {
+  var info = L.control({
+  position: "bottomright"
+});
+// When the layer control is added, insert a div with the class of "legend"
+  info.onAdd = function() {
+      var div = L.DomUtil.create("div", "legend");
+      div.innerHTML=[
+          "<h8>Depth(km):</h8></br>",
+          "<span class='d1'>< 10</span>",
+          "</br>",
+          "<span class='d2'>10-30</span></br>",
+          "<span class='d3'>30-50</span></br>",
+          "<span class='d4'>50-70</span></br>",
+          "<span class='d5'>70-90</span></br>",
+          "<span class='d6'>>90</span>"
+          ].join("");
+
+    return div;
+};
+// Add the info legend to the map
+info.addTo(myMap);
+};
+
 
 
 //creates map amnd adds features
@@ -88,30 +113,7 @@ d3.json(url).then(function (data) {
   }
 );
 
-// Create a legend to display information about eq depth
-function eqLegend(myMap) {
-  var info = L.control({
-  position: "bottomright"
-});
-// When the layer control is added, insert a div with the class of "legend"
-  info.onAdd = function() {
-      var div = L.DomUtil.create("div", "legend");
-      div.innerHTML=[
-          "<h8>Depth(km):</h8></br>",
-          "<span class='d1'>< 10</span>",
-          "</br>",
-          "<span class='d2'>10-30</span></br>",
-          "<span class='d3'>30-50</span></br>",
-          "<span class='d4'>50-70</span></br>",
-          "<span class='d5'>70-90</span></br>",
-          "<span class='d6'>>90</span>"
-          ].join("");
 
-    return div;
-};
-// Add the info legend to the map
-info.addTo(myMap);
-};
 
 
 
